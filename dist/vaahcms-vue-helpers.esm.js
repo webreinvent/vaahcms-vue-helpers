@@ -1,0 +1,1 @@
+import"axios";import o from"moment";import"nprogress";var t={options:{},setOptions:function(o){return this.options=o,this},console:function(){console.log("helper")},currentDate:function(){return o().format("YYYY-MM-DD")}};export default{install:function(o,n){var r=t.setOptions(n);o.prototype.$vaahcms=r,o.vaahcms=r}};
