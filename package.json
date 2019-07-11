@@ -1,6 +1,6 @@
 {
   "name": "vaahcms-vue-helpers",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Vue Helpers for VaahCms",
   "repository": "git@github.com:webreinvent/vaahcms-vue-helpers.git",
   "main": "dist/vaahcms-vue-helpers.ssr.js",
