@@ -2,6 +2,7 @@ import axios from 'axios';
 import moment from 'moment'
 import NProgress from 'nprogress'
 import alertify from 'alertifyjs'
+import jquery from 'jquery'
 
 const VaahCms = {
   options: {},
@@ -49,7 +50,7 @@ const VaahCms = {
 
       if(error.response && error.response && error.response.status === "419")
       {
-        this.$helpers.console(error);
+        this.console(error);
         this.errors(["Login expired, try to login again."]);
 
       } else if (error.response)
@@ -58,14 +59,14 @@ const VaahCms = {
         this.errors([error.response.data]);
 
         // Request made and server responded
-        this.$helpers.console(error.response.data);
-        this.$helpers.console(error.response.status);
-        this.$helpers.console(error.response.headers);
+        this.console(error.response.data);
+        this.console(error.response.status);
+        this.console(error.response.headers);
 
       } else if (error.request) {
 
         // The request was made but no response was received
-        this.$helpers.console(error.request);
+        this.console(error.request);
         this.errors(['Server not responding']);
 
       } else {
@@ -675,68 +676,9 @@ const VaahCms = {
 
   },
   //---------------------------------------------------------------------
-  activateSummernoteEditor: function (editor_id, data) {
 
-    console.log('-->summer', editor_id);
-
-    let self = this;
-    $(editor_id).summernote({
-      minHeight: 150,
-      maxHeight: 350,
-      callbacks: {
-        // Clear all formatting of the pasted text
-        onPaste: function (e) {
-          let bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-          e.preventDefault();
-          setTimeout( function(){
-            document.execCommand( 'insertText', false, bufferText );
-          }, 10 );
-        },
-        onKeyup: function(e) {
-          //self.getValuesFromBlockCount(self.block_count)
-        },
-        onImageUpload: function(files)
-        {
-          console.log('files-->', files) ;
-          self.uploadSummernoteImage(files[0], editor_id);
-        }
-      },
-
-    });
-
-
-    if(data)
-    {
-      $(editor_id).summernote('code', data);
-    }
-
-  },
   //---------------------------------------------------------------------
-  activateAceEditor: function (element_id, language, data) {
 
-    let editor = ace.edit(element_id);
-
-
-
-    editor.setOptions({
-      fontFamily: "consolas",
-      fontSize: "15px",
-      minLines: 5,
-      maxLines: Infinity
-    });
-
-    console.log('-->'+element_id, language);
-
-    editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/"+language);
-    editor.getSession().setUseWorker(false);
-
-    if(data)
-    {
-      editor.getSession().setValue(data);
-    }
-
-  },
   //---------------------------------------------------------------------
   //---------------------------------------------------------------------
   //---------------------------------------------------------------------

@@ -1,4 +1,4 @@
-'use strict';Object.defineProperty(exports,'__esModule',{value:true});function _interopDefault(e){return(e&&(typeof e==='object')&&'default'in e)?e['default']:e}var axios=_interopDefault(require('axios')),moment=_interopDefault(require('moment')),NProgress=_interopDefault(require('nprogress')),alertify=_interopDefault(require('alertifyjs'));var VaahCms = {
+'use strict';Object.defineProperty(exports,'__esModule',{value:true});function _interopDefault(e){return(e&&(typeof e==='object')&&'default'in e)?e['default']:e}var axios=_interopDefault(require('axios')),moment=_interopDefault(require('moment')),NProgress=_interopDefault(require('nprogress')),alertify=_interopDefault(require('alertifyjs'));require('jquery');var VaahCms = {
   options: {},
   //---------------------------------------------------------------------
   //---------------------------------------------------------------------
@@ -47,7 +47,7 @@
 
       if(error.response && error.response && error.response.status === "419")
       {
-        this$1.$helpers.console(error);
+        this$1.console(error);
         this$1.errors(["Login expired, try to login again."]);
 
       } else if (error.response)
@@ -56,14 +56,14 @@
         this$1.errors([error.response.data]);
 
         // Request made and server responded
-        this$1.$helpers.console(error.response.data);
-        this$1.$helpers.console(error.response.status);
-        this$1.$helpers.console(error.response.headers);
+        this$1.console(error.response.data);
+        this$1.console(error.response.status);
+        this$1.console(error.response.headers);
 
       } else if (error.request) {
 
         // The request was made but no response was received
-        this$1.$helpers.console(error.request);
+        this$1.console(error.request);
         this$1.errors(['Server not responding']);
 
       } else {
@@ -677,68 +677,9 @@
 
   },
   //---------------------------------------------------------------------
-  activateSummernoteEditor: function (editor_id, data) {
 
-    console.log('-->summer', editor_id);
-
-    var self = this;
-    $(editor_id).summernote({
-      minHeight: 150,
-      maxHeight: 350,
-      callbacks: {
-        // Clear all formatting of the pasted text
-        onPaste: function (e) {
-          var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-          e.preventDefault();
-          setTimeout( function(){
-            document.execCommand( 'insertText', false, bufferText );
-          }, 10 );
-        },
-        onKeyup: function(e) {
-          //self.getValuesFromBlockCount(self.block_count)
-        },
-        onImageUpload: function(files)
-        {
-          console.log('files-->', files) ;
-          self.uploadSummernoteImage(files[0], editor_id);
-        }
-      },
-
-    });
-
-
-    if(data)
-    {
-      $(editor_id).summernote('code', data);
-    }
-
-  },
   //---------------------------------------------------------------------
-  activateAceEditor: function (element_id, language, data) {
 
-    var editor = ace.edit(element_id);
-
-
-
-    editor.setOptions({
-      fontFamily: "consolas",
-      fontSize: "15px",
-      minLines: 5,
-      maxLines: Infinity
-    });
-
-    console.log('-->'+element_id, language);
-
-    editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/"+language);
-    editor.getSession().setUseWorker(false);
-
-    if(data)
-    {
-      editor.getSession().setValue(data);
-    }
-
-  },
   //---------------------------------------------------------------------
   //---------------------------------------------------------------------
   //---------------------------------------------------------------------
