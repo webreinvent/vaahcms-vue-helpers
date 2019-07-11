@@ -1,7 +1,7 @@
 import axios from 'axios';
 import moment from 'moment'
 import NProgress from 'nprogress'
-import alertify from 'alertify'
+import alertify from 'alertifyjs'
 
 const VaahCms = {
   options: {},

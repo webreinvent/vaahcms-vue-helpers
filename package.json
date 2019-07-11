@@ -1,6 +1,6 @@
 {
   "name": "vaahcms-vue-helpers",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Vue Helpers for VaahCms",
   "repository": "git@github.com:webreinvent/vaahcms-vue-helpers.git",
   "main": "dist/vaahcms-vue-helpers.ssr.js",
@@ -18,7 +18,7 @@
   "dependencies": {
     "axios": "*",
     "moment": "*",
-    "alertify": "*",
+    "alertifyjs": "*",
     "nprogress": "*"
   },
   "devDependencies": {
