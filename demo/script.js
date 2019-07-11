@@ -16,7 +16,7 @@ const app = new Vue({
 
         //-----------------------------------------------------------
         getHelper: function () {
-            this.$vaahcms.checkConsole();
+            this.$vaahcms.console('test');
             console.log('test');
         },
         //---------------------------------------------------------------------
