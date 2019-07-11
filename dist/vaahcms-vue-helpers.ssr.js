@@ -1,4 +1,4 @@
-'use strict';Object.defineProperty(exports,'__esModule',{value:true});function _interopDefault(e){return(e&&(typeof e==='object')&&'default'in e)?e['default']:e}var axios=_interopDefault(require('axios')),moment=_interopDefault(require('moment')),NProgress=_interopDefault(require('nprogress')),alertify=_interopDefault(require('alertify'));var VaahCms = {
+'use strict';Object.defineProperty(exports,'__esModule',{value:true});function _interopDefault(e){return(e&&(typeof e==='object')&&'default'in e)?e['default']:e}var axios=_interopDefault(require('axios')),moment=_interopDefault(require('moment')),NProgress=_interopDefault(require('nprogress')),alertify=_interopDefault(require('alertifyjs'));var VaahCms = {
   options: {},
   //---------------------------------------------------------------------
   //---------------------------------------------------------------------
