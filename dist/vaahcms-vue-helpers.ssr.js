@@ -1,15 +1,15 @@
-'use strict';Object.defineProperty(exports,'__esModule',{value:true});function _interopDefault(e){return(e&&(typeof e==='object')&&'default'in e)?e['default']:e}var axios=_interopDefault(require('axios')),moment=_interopDefault(require('moment')),NProgress=_interopDefault(require('nprogress')),alertify=_interopDefault(require('alertifyjs'));require('jquery');var VaahCms = {
-  options: {},
-  //---------------------------------------------------------------------
-  //---------------------------------------------------------------------
-  setOptions: function setOptions (options) {
+'use strict';Object.defineProperty(exports,'__esModule',{value:true});function _interopDefault(e){return(e&&(typeof e==='object')&&'default'in e)?e['default']:e}var axios=_interopDefault(require('axios')),moment=_interopDefault(require('moment')),NProgress=_interopDefault(require('nprogress')),alertify=_interopDefault(require('alertifyjs'));require('jquery');var faker=_interopDefault(require('faker'));var VaahCms = {
+    options: {},
+    //---------------------------------------------------------------------
+    //---------------------------------------------------------------------
+    setOptions: function setOptions (options) {
     this.options = options;
     return this
-  },
-  //---------------------------------------------------------------------
-  //---------------------------------------------------------------------
-  ajax: function(url, params, callback, nprogress)
-  {
+    },
+    //---------------------------------------------------------------------
+    //---------------------------------------------------------------------
+    ajax: function(url, params, callback, nprogress)
+    {
     var this$1 = this;
     if ( nprogress === void 0 ) nprogress=true;
 
@@ -74,10 +74,10 @@
 
     });
 
-  },
-  //---------------------------------------------------------------------
-  ajaxGet: function(url, params, callback, nprogress)
-  {
+    },
+    //---------------------------------------------------------------------
+    ajaxGet: function(url, params, callback, nprogress)
+    {
     var this$1 = this;
     if ( nprogress === void 0 ) nprogress=true;
 
@@ -118,25 +118,25 @@
           }
         });
 
-  },
-  //---------------------------------------------------------------------
-  warnings: function (warnings) {
+    },
+    //---------------------------------------------------------------------
+    warnings: function (warnings) {
     $.each(warnings, function (index, object) {
       alertify.error(object);
     });
-  },
-  //---------------------------------------------------------------------
-  errors: function (errors) {
+    },
+    //---------------------------------------------------------------------
+    errors: function (errors) {
     $.each(errors, function (index, error_objects) {
 
       alertify.error(error_objects);
 
     });
     this.stopNprogress();
-  },
-  //---------------------------------------------------------------------
-  confirm: function(message, callback, data)
-  {
+    },
+    //---------------------------------------------------------------------
+    confirm: function(message, callback, data)
+    {
 
     alertify.confirm(message, function(e){
       if (e) {
@@ -145,32 +145,32 @@
         return false;
       }
     });
-  },
-  //---------------------------------------------------------------------
-  messages: function (messages) {
+    },
+    //---------------------------------------------------------------------
+    messages: function (messages) {
     $.each(messages, function (index, object) {
       alertify.success(object);
     });
-  },
-  //---------------------------------------------------------------------
-  success: function (message) {
+    },
+    //---------------------------------------------------------------------
+    success: function (message) {
     if(message === undefined)
     {
       message = "success";
     }
     alertify.success(message);
-  },
-  //---------------------------------------------------------------------
-  stopNprogress: function()
-  {
+    },
+    //---------------------------------------------------------------------
+    stopNprogress: function()
+    {
 
     NProgress.done();
     /*this.$nextTick(function () {
         NProgress.done();
     });*/
-  },
-  //---------------------------------------------------------------------
-  console: function (data, label) {
+    },
+    //---------------------------------------------------------------------
+    console: function (data, label) {
 
     var debug = $('#debug').attr('content');
 
@@ -184,13 +184,13 @@
         console.log(data);
       }
     }
-  },
-  //---------------------------------------------------------------------
-  findAndReplaceString:  function (find_string, replace_string, full_string ) {
+    },
+    //---------------------------------------------------------------------
+    findAndReplaceString:  function (find_string, replace_string, full_string ) {
     return full_string.replace(find_string, replace_string);
-  },
-  //---------------------------------------------------------------------
-  findAndReplace: function(arr, key, data) {
+    },
+    //---------------------------------------------------------------------
+    findAndReplace: function(arr, key, data) {
     var index =null;
     for (var i = 0; i < arr.length; i++) {
       if(arr[i][key] == data[key])
@@ -206,23 +206,23 @@
     }
 
     return false;
-  },
-  //---------------------------------------------------------------------
-  updateArray: function(array, updatedElement) {
+    },
+    //---------------------------------------------------------------------
+    updateArray: function(array, updatedElement) {
     var index = array.indexOf(updatedElement);
     array[index] = updatedElement;
     return array;
-  },
+    },
 
-  //---------------------------------------------------------------------
-  removeFromArray: function(arr, element) {
+    //---------------------------------------------------------------------
+    removeFromArray: function(arr, element) {
     var removeIndex = arr.map(function(item) { return item; }).indexOf(element);
     console.log('index', removeIndex);
     return arr.splice(removeIndex, 1);
-  },
+    },
 
-  //---------------------------------------------------------------------
-  findInArrayByKey: function (array, key, value) {
+    //---------------------------------------------------------------------
+    findInArrayByKey: function (array, key, value) {
 
     if(!Array.isArray(array))
     {
@@ -241,9 +241,9 @@
     });
 
     return element;
-  },
-  //---------------------------------------------------------------------
-  removeInArrayByKey: function (array, element, key) {
+    },
+    //---------------------------------------------------------------------
+    removeInArrayByKey: function (array, element, key) {
 
     if(!Array.isArray(array))
     {
@@ -263,9 +263,9 @@
     });
 
     return array;
-  },
-  //---------------------------------------------------------------------
-  existInArray: function(array, element) {
+    },
+    //---------------------------------------------------------------------
+    existInArray: function(array, element) {
     var index = array.indexOf(element);
 
     if(index == -1)
@@ -275,10 +275,10 @@
     {
       return true;
     }
-  },
-  //---------------------------------------------------------------------
+    },
+    //---------------------------------------------------------------------
 
-  existInArrayByKey: function (array, element, key) {
+    existInArrayByKey: function (array, element, key) {
     var exist = false;
     if(!Array.isArray(array))
     {
@@ -294,9 +294,9 @@
     });
 
     return exist;
-  },
-  //---------------------------------------------------------------------
-  splitString: function (string, characters) {
+    },
+    //---------------------------------------------------------------------
+    splitString: function (string, characters) {
 
     if(string != "" && string != null)
     {
@@ -306,17 +306,17 @@
     }
 
     return string;
-  },
-  //---------------------------------------------------------------------
-  formatDate: function (value) {
+    },
+    //---------------------------------------------------------------------
+    formatDate: function (value) {
     if(!value)
     {
       return "";
     }
     return moment(value).format('YYYY-MM-DD');
-  },
-  //---------------------------------------------------------------------
-  fromNow: function (value) {
+    },
+    //---------------------------------------------------------------------
+    fromNow: function (value) {
 
     if(!value)
     {
@@ -324,26 +324,26 @@
     }
 
     return moment(value).fromNow();
-  },
+    },
 
-  //---------------------------------------------------------------------
-  currentDate: function () {
+    //---------------------------------------------------------------------
+    currentDate: function () {
     return moment().format('YYYY-MM-DD')
-  },
-  //---------------------------------------------------------------------
-  currentDateTime: function () {
+    },
+    //---------------------------------------------------------------------
+    currentDateTime: function () {
     return moment().format('YYYY-MM-DD HH:mm:ss')
-  },
-  //---------------------------------------------------------------------
-  dateForHumans: function (value) {
+    },
+    //---------------------------------------------------------------------
+    dateForHumans: function (value) {
     if(!value)
     {
       return null;
     }
     return moment(value).format('ddd, MMM DD, YYYY')
-  },
-  //---------------------------------------------------------------------
-  dateTimeForHumans: function (value) {
+    },
+    //---------------------------------------------------------------------
+    dateTimeForHumans: function (value) {
 
     if(!value)
     {
@@ -351,39 +351,39 @@
     }
 
     return moment(value).format('YYYY-MM-DD hh:mm A')
-  },
-  //---------------------------------------------------------------------
-  dateTimeForHumansWithDay: function (value) {
+    },
+    //---------------------------------------------------------------------
+    dateTimeForHumansWithDay: function (value) {
     if(!value)
     {
       return null;
     }
     return moment(value).format('YYYY MMM DD hh:mm A (dddd)')
-  },
-  //---------------------------------------------------------------------
-  checkPermission: function (slug) {
+    },
+    //---------------------------------------------------------------------
+    checkPermission: function (slug) {
     return this.permissions.indexOf(slug) > -1 ? true : false;
-  },
-  //---------------------------------------------------------------------
-  paginate: function (event, page) {
+    },
+    //---------------------------------------------------------------------
+    paginate: function (event, page) {
     event.preventDefault();
     this.current_page = page;
     this.listLoader();
-  },
-  //---------------------------------------------------------------------
-  makePagination: function (data) {
+    },
+    //---------------------------------------------------------------------
+    makePagination: function (data) {
     this.pagination = Pagination.Init(data.last_page, this.current_page, 3);
-  },
-  //---------------------------------------------------------------------
-  paginateIsActive: function (page) {
+    },
+    //---------------------------------------------------------------------
+    paginateIsActive: function (page) {
     if(page == this.current_page)
     {
       return true;
     }
     return false;
-  },
-  //---------------------------------------------------------------------
-  toIndianFormat: function (nStr) {
+    },
+    //---------------------------------------------------------------------
+    toIndianFormat: function (nStr) {
 
     if(nStr < 0)
     {
@@ -418,9 +418,9 @@
       }
     }
     return x1 + x2;
-  },
-  //---------------------------------------------------------------------
-  currencyToSymbol: function (currency) {
+    },
+    //---------------------------------------------------------------------
+    currencyToSymbol: function (currency) {
 
     if(currency == "USD")
     {
@@ -432,16 +432,16 @@
     {
       return currency;
     }
-  },
-  //---------------------------------------------------------------------
-  setCookies: function (cookie_name, value, expiry_days) {
+    },
+    //---------------------------------------------------------------------
+    setCookies: function (cookie_name, value, expiry_days) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + expiry_days);
     var c_value = escape(value) + ((expiry_days == null) ? "" : "; expires=" + exdate.toUTCString());
     document.cookie = cookie_name + "=" + value;
-  },
-  //---------------------------------------------------------------------
-  getCookies: function (cookie_name) {
+    },
+    //---------------------------------------------------------------------
+    getCookies: function (cookie_name) {
     var i, x, y, ARRcookies = document.cookie.split(";");
     for (i = 0; i < ARRcookies.length; i++) {
       x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
@@ -451,14 +451,14 @@
         return unescape(y);
       }
     }
-  },
-  //---------------------------------------------------------------------
-  deleteCookies: function (cookie_name) {
+    },
+    //---------------------------------------------------------------------
+    deleteCookies: function (cookie_name) {
     this.setCookies(cookie_name,undefined,-1);
-  },
-  //---------------------------------------------------------------------
-  shiftToTop: function (arr, key, value)
-  {
+    },
+    //---------------------------------------------------------------------
+    shiftToTop: function (arr, key, value)
+    {
     var index =null;
     for (var i = 0; i < arr.length; i++) {
       if(arr[i][key] == value)
@@ -484,41 +484,41 @@
 
 
 
-  },
-  //---------------------------------------------------------------------
-  timeDifferenceInSeconds: function (started_at,ended_at) {
+    },
+    //---------------------------------------------------------------------
+    timeDifferenceInSeconds: function (started_at,ended_at) {
     var ms = moment(ended_at,"YYYY-MM-DD HH:mm:ss").diff(moment(started_at, "YYYY-MM-DD HH:mm:ss"));
     var seconds = ms/1000;
     return seconds;
-  },
-  //---------------------------------------------------------------------
-  secondsToHoursMinutsSeconds: function (seconds) {
+    },
+    //---------------------------------------------------------------------
+    secondsToHoursMinutsSeconds: function (seconds) {
 
     var ms = seconds*1000;
     var d = moment.duration(ms);
     var time = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
 
     return time;
-  },
-  //---------------------------------------------------------------------
-  getTimeDifferenceInHHMMSS: function getTimeDifferenceInHHMMSS(started_at, ended_at)
-  {
+    },
+    //---------------------------------------------------------------------
+    getTimeDifferenceInHHMMSS: function getTimeDifferenceInHHMMSS(started_at, ended_at)
+    {
     var seconds = this.timeDifferenceInSeconds(started_at, ended_at);
     var time = this.secondsToHoursMinutsSeconds(seconds);
     return time;
-  },
-  //---------------------------------------------------------------------
-  secondsToHours: function (seconds) {
+    },
+    //---------------------------------------------------------------------
+    secondsToHours: function (seconds) {
 
     var ms = seconds*1000;
     var d = moment.duration(ms);
     var time = d.asHours();
 
     return time;
-  },
-  //---------------------------------------------------------------------
-  getTimeDifferenceInDays: function getTimeDifferenceInDays(started_at, ended_at)
-  {
+    },
+    //---------------------------------------------------------------------
+    getTimeDifferenceInDays: function getTimeDifferenceInDays(started_at, ended_at)
+    {
     if(!started_at || !ended_at)
     {
       return null;
@@ -530,9 +530,9 @@
     var days = started.diff(ended, "days");
 
     return days;
-  },
-  //---------------------------------------------------------------------
-  addTagToOneSignalUser: function (tag_name, tag_value) {
+    },
+    //---------------------------------------------------------------------
+    addTagToOneSignalUser: function (tag_name, tag_value) {
     if(OneSignal)
     {
       OneSignal.push(function() {
@@ -542,9 +542,9 @@
         });
       });
     }
-  },
-  //---------------------------------------------------------------------
-  deleteTagToOneSignalUser: function (tag_name) {
+    },
+    //---------------------------------------------------------------------
+    deleteTagToOneSignalUser: function (tag_name) {
     if(OneSignal)
     {
       OneSignal.push(function() {
@@ -554,20 +554,20 @@
         });
       });
     }
-  },
-  //---------------------------------------------------------------------
-  openUrl: function (event, url) {
+    },
+    //---------------------------------------------------------------------
+    openUrl: function (event, url) {
     if(event)
     {
       event.preventDefault();
     }
     window.open(url, "_blank");
-  },
-  //---------------------------------------------------------------------
-  /*
-   * make sure upload_form_selector is non dynamic element
-   */
-  uploadFiles: function (upload_form_selector, callback, folder_name) {
+    },
+    //---------------------------------------------------------------------
+    /*
+    * make sure upload_form_selector is non dynamic element
+    */
+    uploadFiles: function (upload_form_selector, callback, folder_name) {
     if ( folder_name === void 0 ) folder_name=null;
 
 
@@ -652,9 +652,9 @@
     });
 
 
-  },
-  //---------------------------------------------------------------------
-  uploadSummernoteImage: function(file, editor_id) {
+    },
+    //---------------------------------------------------------------------
+    uploadSummernoteImage: function(file, editor_id) {
     data = new FormData();
     data.append("file", file);
 
@@ -675,15 +675,15 @@
     });
 
 
-  },
-  //---------------------------------------------------------------------
+    },
+    //---------------------------------------------------------------------
 
-  //---------------------------------------------------------------------
+    //---------------------------------------------------------------------
 
-  //---------------------------------------------------------------------
-  //---------------------------------------------------------------------
-  //---------------------------------------------------------------------
-  remainingCharacters: function (event, min_characters, max_characters, target_show_remaining) {
+    //---------------------------------------------------------------------
+    //---------------------------------------------------------------------
+    //---------------------------------------------------------------------
+    remainingCharacters: function (event, min_characters, max_characters, target_show_remaining) {
     if (event) {
       event.preventDefault();
     }
@@ -712,9 +712,9 @@
       $(target_show_remaining).html(text);
     }
 
-  },
-  //---------------------------------------------------------------------
-  randomString: function(length) {
+    },
+    //---------------------------------------------------------------------
+    randomString: function(length) {
     if ( length === void 0 ) length=6;
 
     var text = "";
@@ -725,15 +725,15 @@
     }
 
     return text;
-  },
-  //---------------------------------------------------------------------
-  updateDocumentUrlTitle: function (title, url) {
+    },
+    //---------------------------------------------------------------------
+    updateDocumentUrlTitle: function (title, url) {
     window.history.pushState(null, title, url);
-  },
-  //---------------------------------------------------------------------
+    },
+    //---------------------------------------------------------------------
 
-  //---------------------------------------------------------------------
-  strToSlug: function (title) {
+    //---------------------------------------------------------------------
+    strToSlug: function (title) {
     var slug = "";
     // Change to lower case
     var titleLower = title.toLowerCase();
@@ -753,19 +753,19 @@
     slug = slug.replace(/\s+/g, '-');
 
     return slug;
-  },
-  //---------------------------------------------------------------------
-  isInt: function (n) {
+    },
+    //---------------------------------------------------------------------
+    isInt: function (n) {
     return Number(n) === n && n % 1 === 0;
-  },
-  //---------------------------------------------------------------------
-  isFloat: function (n) {
+    },
+    //---------------------------------------------------------------------
+    isFloat: function (n) {
     return Number(n) === n && n % 1 !== 0;
-  },
-  //---------------------------------------------------------------------
-  //---------------------------------------------------------------------
-  //---------------------------------------------------------------------
-  btDropDown: function (e) {
+    },
+    //---------------------------------------------------------------------
+    //---------------------------------------------------------------------
+    //---------------------------------------------------------------------
+    btDropDown: function (e) {
     if(e)
     {
       e.preventDefault();
@@ -774,9 +774,9 @@
     var el = e.target;
     var fd =  $(el).closest('.dropdown').find('.dropdown-menu');
     $(fd).toggleClass('show');
-  },
-  //---------------------------------------------------------------------
-  btDropDownFormGroup: function (e) {
+    },
+    //---------------------------------------------------------------------
+    btDropDownFormGroup: function (e) {
     if(e)
     {
       e.preventDefault();
@@ -790,9 +790,9 @@
     console.log(fd.attr("class"));
 
     $(fd).toggleClass('show');
-  },
-  //---------------------------------------------------------------------
-  btDropDownFormGroupHide: function (el) {
+    },
+    //---------------------------------------------------------------------
+    btDropDownFormGroupHide: function (el) {
 
     var fd =  $(el).closest('.btn-group').find('.dropdown-menu');
 
@@ -801,10 +801,160 @@
     console.log(fd.attr("class"));
 
     $(fd).toggleClass('show');
-  },
-  //---------------------------------------------------------------------
-  //---------------------------------------------------------------------
-  //---------------------------------------------------------------------
+    },
+    //---------------------------------------------------------------------
+    fakeFill: function (obj) {
+
+
+        for (var key in obj) {
+            if(!obj.hasOwnProperty(key)) { continue; }
+
+            switch (key) {
+
+                case 'user_id':
+                case 'created_by':
+                case 'updated_by':
+                case 'deleted_by':
+                    obj[key] = faker.random.number();
+                    break;
+
+                case 'email':
+                case 'alternate_email':
+                    obj[key] = faker.internet.email();
+                    break;
+
+                case 'username':
+                    obj[key] = faker.internet.userName();
+                    break;
+
+                case 'display_name':
+                    obj[key] = faker.internet.userName();
+                    break;
+
+                case 'title':
+                case 'excerpt':
+                case 'description':
+                case 'details':
+                    obj[key] = faker.lorem.sentence();
+                    break;
+
+                case 'name':
+                case 'author_name':
+                    obj[key] = faker.name.firstName()+" "+faker.name.lastName();
+                    break;
+
+                case 'website':
+                case 'homepage':
+                    obj[key] = faker.internet.domainName();
+                    break;
+
+                case 'first_name':
+                    obj[key] = faker.internet.firstName();
+                    break;
+
+                case 'middle_name':
+                    obj[key] = faker.internet.lastName();
+                    break;
+
+
+                case 'last_name':
+                    obj[key] = faker.internet.lastName();
+                    break;
+
+
+
+                case 'phone':
+                    obj[key] = faker.internet.phoneNumber();
+                    break;
+
+
+                case 'avatar_url':
+                case 'github_url':
+                case 'url':
+                    obj[key] = faker.internet.domainName();
+                    break;
+
+                case 'date_time':
+                case 'created_at':
+                case 'updated_at':
+                case 'deleted_at':
+                case 'published_at':
+                case 'order_date':
+                    obj[key] = this.currentDateTime();
+                    break;
+
+                case 'birth':
+                    obj[key] = this.currentDate();
+                    break;
+
+
+                case 'last_login_at':
+                case 'api_token_used_at':
+                case 'activated_at':
+                    obj[key] = this.currentDate();
+                    break;
+
+                case 'is_active':
+                    obj[key] = true;
+                    break;
+
+                case 'address_one':
+                    obj[key] = faker.address.streetName();
+                    break;
+
+                case 'address_two':
+                    obj[key] = faker.address.streetAddress();
+                    break;
+
+                case 'city':
+                    obj[key] = faker.address.city();
+                    break;
+
+                case 'state':
+                    obj[key] = faker.address.city();
+                    break;
+
+                case 'country_code':
+                    obj[key] = faker.address.countryCode();
+                    break;
+
+                case 'country':
+                    obj[key] = faker.address.country();
+                    break;
+
+                case 'postal_code':
+                    obj[key] = faker.address.zipCode();
+                    break;
+
+                case 'currency':
+                    obj[key] = faker.address.currencyCode();
+                    break;
+
+
+                case 'coupon_discounted_value':
+                case 'discount':
+                case 'tax':
+                case 'total':
+                case 'paid':
+                case 'balance':
+                case 'price':
+                case 'quantity':
+                    obj[key] = faker.commerce.price();
+                    break;
+
+                case 'business_name' :
+                    obj[key] = faker.company.companyName();
+                    break;
+
+            }
+        }
+
+
+        return obj;
+
+    }
+    //---------------------------------------------------------------------
+    //---------------------------------------------------------------------
 
 
 };

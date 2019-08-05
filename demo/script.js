@@ -1,4 +1,4 @@
-import VaahCms from './../dist/vaahcms-vue-helpers.esm.js'
+import VaahCms from './../dist/vaahcms-vue-helpers.min.js'
 
 Vue.use(VaahCms);
 
@@ -7,6 +7,10 @@ const app = new Vue({
 
     data: {
         assets: null,
+        new_item: {
+            name: null,
+            email: null
+        }
     },
 
     mounted() {
@@ -19,7 +23,9 @@ const app = new Vue({
             this.$vaahcms.console('test');
             console.log('test');
         },
-        //---------------------------------------------------------------------
+        //-----------------------------------------------------------
+
+
 
         //-----------------------------------------------------------
         //-----------------------------------------------------------
