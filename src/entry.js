@@ -847,22 +847,22 @@ const VaahCms = {
                     break;
 
                 case 'first_name':
-                    obj[key] = faker.internet.firstName();
+                    obj[key] = faker.name.firstName();
                     break;
 
                 case 'middle_name':
-                    obj[key] = faker.internet.lastName();
+                    obj[key] = faker.name.lastName();
                     break;
 
 
                 case 'last_name':
-                    obj[key] = faker.internet.lastName();
+                    obj[key] = faker.name.lastName();
                     break;
 
 
 
                 case 'phone':
-                    obj[key] = faker.internet.phoneNumber();
+                    obj[key] = faker.phone.phoneNumber();
                     break;
 
 
