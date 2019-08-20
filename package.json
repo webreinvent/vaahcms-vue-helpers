@@ -1,6 +1,6 @@
 {
   "name": "vaahcms-vue-helpers",
-  "version": "0.0.13",
+  "version": "0.0.23",
   "description": "Vue Helpers for VaahCms",
   "repository": "git@github.com:webreinvent/vaahcms-vue-helpers.git",
   "main": "dist/vaahcms-vue-helpers.ssr.js",
@@ -21,7 +21,10 @@
     "faker": "^4.1.0",
     "jquery": "*",
     "moment": "*",
-    "nprogress": "*"
+    "nprogress": "*",
+    "rollup-plugin-async": "^1.2.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
@@ -33,6 +36,24 @@
     "rollup-plugin-terser": "^4.0.4",
     "rollup-plugin-vue": "^5.0.0",
     "vue": "^2.6.10",
-    "vue-template-compiler": "^2.6.10"
-  }
+    "vue-template-compiler": "^2.6.10",
+    "@babel/plugin-transform-runtime": "^7.5.5"
+  },
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "absoluteRuntime": false,
+        "corejs": false,
+        "helpers": true,
+        "regenerator": true,
+        "useESModules": false,
+        "asyncAwait": false
+      },
+      "@babel/transform-async-to-generator",
+      {
+        "asyncAwait": false
+      }
+    ]
+  ]
 }

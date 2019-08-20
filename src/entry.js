@@ -2,8 +2,8 @@ import axios from 'axios'
 import moment from 'moment'
 import NProgress from 'nprogress'
 import alertify from 'alertifyjs'
-import jquery from 'jquery'
 import faker from 'faker'
+
 
 const VaahCms = {
     options: {},
@@ -14,6 +14,80 @@ const VaahCms = {
     return this
     },
     //---------------------------------------------------------------------
+
+    //---------------------------------------------------------------------
+    async ajaxReturn(url, params, nprogress=true)
+    {
+        if(nprogress)
+        {
+            NProgress.start();
+        }
+
+        let axios_response = await axios.post(url, params)
+            .then(response => {
+
+                console.log('onResponse-->', response);
+
+                if(response.data.status == 'success')
+                {
+                    if(response.data.messages)
+                    {
+                        this.messages(response.data.messages);
+                    }
+
+                    if(response.data.warnings)
+                    {
+                        this.warnings(response.data.warnings);
+                    }
+
+                    return response.data.data;
+
+                } else
+                {
+                    console.log(response);
+                    if(response.data.errors)
+                    {
+                        this.errors(response.data.errors);
+                    }
+
+                }
+            }).catch(error => {
+
+            if(error.response && error.response && error.response.status === "419")
+            {
+                this.console(error);
+                this.errors(["Login expired, try to login again."]);
+
+            } else if (error.response)
+            {
+
+                this.errors([error.response.data]);
+
+                // Request made and server responded
+                this.console(error.response.data);
+                this.console(error.response.status);
+                this.console(error.response.headers);
+
+            } else if (error.request) {
+
+                // The request was made but no response was received
+                this.console(error.request);
+                this.errors(['Server not responding']);
+
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.error(error);
+                this.errors(["Error: check console"]);
+            }
+
+        });
+
+        console.log('axios_response-->', axios_response);
+
+        return axios_response;
+    },
+    //---------------------------------------------------------------------
+
     //---------------------------------------------------------------------
     ajax: function(url, params, callback, nprogress=true)
     {
@@ -79,6 +153,8 @@ const VaahCms = {
     });
 
     },
+    //---------------------------------------------------------------------
+
     //---------------------------------------------------------------------
     ajaxGet: function(url, params, callback, nprogress=true)
     {
@@ -959,7 +1035,7 @@ const VaahCms = {
 
 
 export default {
-  install: function (Vue, options) {
+    install: function(Vue, options) {
     let vaahcms = VaahCms.setOptions(options);
     Vue.prototype.$vaahcms = vaahcms;
     Vue.vaahcms = vaahcms;

@@ -1,4 +1,4 @@
-'use strict';Object.defineProperty(exports,'__esModule',{value:true});function _interopDefault(e){return(e&&(typeof e==='object')&&'default'in e)?e['default']:e}var axios=_interopDefault(require('axios')),moment=_interopDefault(require('moment')),NProgress=_interopDefault(require('nprogress')),alertify=_interopDefault(require('alertifyjs'));require('jquery');var faker=_interopDefault(require('faker'));var VaahCms = {
+'use strict';Object.defineProperty(exports,'__esModule',{value:true});function _interopDefault(e){return(e&&(typeof e==='object')&&'default'in e)?e['default']:e}var axios=_interopDefault(require('axios')),moment=_interopDefault(require('moment')),NProgress=_interopDefault(require('nprogress')),alertify=_interopDefault(require('alertifyjs')),faker=_interopDefault(require('faker'));var VaahCms = {
     options: {},
     //---------------------------------------------------------------------
     //---------------------------------------------------------------------
@@ -7,6 +7,83 @@
     return this
     },
     //---------------------------------------------------------------------
+
+    //---------------------------------------------------------------------
+    ajaxReturn: async function ajaxReturn(url, params, nprogress)
+    {
+        var this$1 = this;
+        if ( nprogress === void 0 ) nprogress=true;
+
+        if(nprogress)
+        {
+            NProgress.start();
+        }
+
+        var axios_response = await axios.post(url, params)
+            .then(function (response) {
+
+                console.log('onResponse-->', response);
+
+                if(response.data.status == 'success')
+                {
+                    if(response.data.messages)
+                    {
+                        this$1.messages(response.data.messages);
+                    }
+
+                    if(response.data.warnings)
+                    {
+                        this$1.warnings(response.data.warnings);
+                    }
+
+                    return response.data.data;
+
+                } else
+                {
+                    console.log(response);
+                    if(response.data.errors)
+                    {
+                        this$1.errors(response.data.errors);
+                    }
+
+                }
+            }).catch(function (error) {
+
+            if(error.response && error.response && error.response.status === "419")
+            {
+                this$1.console(error);
+                this$1.errors(["Login expired, try to login again."]);
+
+            } else if (error.response)
+            {
+
+                this$1.errors([error.response.data]);
+
+                // Request made and server responded
+                this$1.console(error.response.data);
+                this$1.console(error.response.status);
+                this$1.console(error.response.headers);
+
+            } else if (error.request) {
+
+                // The request was made but no response was received
+                this$1.console(error.request);
+                this$1.errors(['Server not responding']);
+
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.error(error);
+                this$1.errors(["Error: check console"]);
+            }
+
+        });
+
+        console.log('axios_response-->', axios_response);
+
+        return axios_response;
+    },
+    //---------------------------------------------------------------------
+
     //---------------------------------------------------------------------
     ajax: function(url, params, callback, nprogress)
     {
@@ -75,6 +152,8 @@
     });
 
     },
+    //---------------------------------------------------------------------
+
     //---------------------------------------------------------------------
     ajaxGet: function(url, params, callback, nprogress)
     {
@@ -961,7 +1040,7 @@
 
 
 var entry = {
-  install: function (Vue, options) {
+    install: function(Vue, options) {
     var vaahcms = VaahCms.setOptions(options);
     Vue.prototype.$vaahcms = vaahcms;
     Vue.vaahcms = vaahcms;

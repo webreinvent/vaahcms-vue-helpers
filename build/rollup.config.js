@@ -24,7 +24,9 @@ const baseConfig = {
       },
     },
     postVue: [
-      buble(),
+      buble({
+        transforms: { asyncAwait: false }
+      }),
     ],
   },
 };
@@ -111,7 +113,7 @@ if (!argv.format || argv.format === 'iife') {
         output: {
           ecma: 5,
         },
-      }),
+      })
     ],
   };
   buildFormats.push(unpkgConfig);
