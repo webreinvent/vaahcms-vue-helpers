@@ -21,8 +21,10 @@
 
         var axios_response = await axios.post(url, params)
             .then(function (response) {
-
-                console.log('onResponse-->', response);
+                if(nprogress)
+                {
+                    NProgress.done();
+                }
 
                 if(response.data.status == 'success')
                 {
@@ -77,8 +79,6 @@
             }
 
         });
-
-        console.log('axios_response-->', axios_response);
 
         return axios_response;
     },

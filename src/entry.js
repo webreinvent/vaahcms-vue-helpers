@@ -25,8 +25,10 @@ const VaahCms = {
 
         let axios_response = await axios.post(url, params)
             .then(response => {
-
-                console.log('onResponse-->', response);
+                if(nprogress)
+                {
+                    NProgress.done();
+                }
 
                 if(response.data.status == 'success')
                 {
@@ -81,8 +83,6 @@ const VaahCms = {
             }
 
         });
-
-        console.log('axios_response-->', axios_response);
 
         return axios_response;
     },
