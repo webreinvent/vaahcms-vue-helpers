@@ -2,7 +2,6 @@ import axios from 'axios'
 import moment from 'moment'
 import NProgress from 'nprogress'
 import alertify from 'alertifyjs'
-import faker from 'faker'
 
 
 const VaahCms = {
@@ -16,14 +15,14 @@ const VaahCms = {
     //---------------------------------------------------------------------
 
     //---------------------------------------------------------------------
-    async ajaxReturn(url, params, nprogress=true)
+    async ajaxReturn(url, params, query={}, nprogress=true)
     {
         if(nprogress)
         {
             NProgress.start();
         }
 
-        let axios_response = await axios.post(url, params)
+        let axios_response = await axios.post(url, params, query)
             .then(response => {
                 if(nprogress)
                 {
@@ -875,157 +874,6 @@ const VaahCms = {
     console.log(fd.attr("class"));
 
     $(fd).toggleClass('show');
-    },
-    //---------------------------------------------------------------------
-    fakeFill: function (obj) {
-
-
-        for (var key in obj) {
-            if(!obj.hasOwnProperty(key)) continue;
-
-            switch (key) {
-
-                case 'user_id':
-                case 'created_by':
-                case 'updated_by':
-                case 'deleted_by':
-                    obj[key] = faker.random.number();
-                    break;
-
-                case 'email':
-                case 'alternate_email':
-                    obj[key] = faker.internet.email();
-                    break;
-
-                case 'username':
-                    obj[key] = faker.internet.userName();
-                    break;
-
-                case 'display_name':
-                    obj[key] = faker.internet.userName();
-                    break;
-
-                case 'title':
-                case 'excerpt':
-                case 'description':
-                case 'details':
-                    obj[key] = faker.lorem.sentence();
-                    break;
-
-                case 'name':
-                case 'author_name':
-                    obj[key] = faker.name.firstName()+" "+faker.name.lastName();
-                    break;
-
-                case 'website':
-                case 'homepage':
-                    obj[key] = faker.internet.domainName();
-                    break;
-
-                case 'first_name':
-                    obj[key] = faker.name.firstName();
-                    break;
-
-                case 'middle_name':
-                    obj[key] = faker.name.lastName();
-                    break;
-
-
-                case 'last_name':
-                    obj[key] = faker.name.lastName();
-                    break;
-
-
-
-                case 'phone':
-                    obj[key] = faker.phone.phoneNumber();
-                    break;
-
-
-                case 'avatar_url':
-                case 'github_url':
-                case 'url':
-                    obj[key] = faker.internet.domainName();
-                    break;
-
-                case 'date_time':
-                case 'created_at':
-                case 'updated_at':
-                case 'deleted_at':
-                case 'published_at':
-                case 'order_date':
-                    obj[key] = this.currentDateTime();
-                    break;
-
-                case 'birth':
-                    obj[key] = this.currentDate();
-                    break;
-
-
-                case 'last_login_at':
-                case 'api_token_used_at':
-                case 'activated_at':
-                    obj[key] = this.currentDate();
-                    break;
-
-                case 'is_active':
-                    obj[key] = true;
-                    break;
-
-                case 'address_one':
-                    obj[key] = faker.address.streetName();
-                    break;
-
-                case 'address_two':
-                    obj[key] = faker.address.streetAddress();
-                    break;
-
-                case 'city':
-                    obj[key] = faker.address.city();
-                    break;
-
-                case 'state':
-                    obj[key] = faker.address.city();
-                    break;
-
-                case 'country_code':
-                    obj[key] = faker.address.countryCode();
-                    break;
-
-                case 'country':
-                    obj[key] = faker.address.country();
-                    break;
-
-                case 'postal_code':
-                    obj[key] = faker.address.zipCode();
-                    break;
-
-                case 'currency':
-                    obj[key] = faker.address.currencyCode();
-                    break;
-
-
-                case 'coupon_discounted_value':
-                case 'discount':
-                case 'tax':
-                case 'total':
-                case 'paid':
-                case 'balance':
-                case 'price':
-                case 'quantity':
-                    obj[key] = faker.commerce.price();
-                    break;
-
-                case 'business_name' || 'company_name':
-                    obj[key] = faker.company.companyName();
-                    break;
-
-            }
-        }
-
-
-        return obj;
-
     }
     //---------------------------------------------------------------------
     //---------------------------------------------------------------------

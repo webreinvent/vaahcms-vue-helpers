@@ -1,6 +1,6 @@
 {
   "name": "vaahcms-vue-helpers",
-  "version": "0.0.24",
+  "version": "0.0.27",
   "description": "Vue Helpers for VaahCms",
   "repository": "git@github.com:webreinvent/vaahcms-vue-helpers.git",
   "main": "dist/vaahcms-vue-helpers.ssr.js",
@@ -18,13 +18,9 @@
   "dependencies": {
     "alertifyjs": "*",
     "axios": "^0.19.0",
-    "faker": "^4.1.0",
     "jquery": "*",
     "moment": "*",
-    "nprogress": "*",
-    "rollup-plugin-async": "^1.2.0",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-node-resolve": "^5.2.0"
+    "nprogress": "*"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
@@ -37,7 +33,10 @@
     "rollup-plugin-vue": "^5.0.0",
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10",
-    "@babel/plugin-transform-runtime": "^7.5.5"
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "rollup-plugin-async": "^1.2.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0"
   },
   "plugins": [
     [
